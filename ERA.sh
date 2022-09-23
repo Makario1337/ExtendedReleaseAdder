@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-scriptVersion="1.0.1"
+scriptVersion="1.0.2"
 agent="ERA ( https://github.com/Makario1337/ExtendedReleaseAdder )"
 ArtistsJSON=$(jq '.artists[]' /config/artists.json)
 
@@ -58,8 +58,6 @@ if [ ! -d "/audiobooks" ]; then
     exit
 fi
 
-
-
 AddReleaseToLidarr() {
 lidarrAlbumSearch=$(curl -X GET "$lidarrUrl/api/v1/album/lookup?term="lidarr%3A%20$1"" -H  "accept: */*" -H  "X-Api-Key: "$lidarrApiKey"" | jq '.')
 lidarrAlbumSearch=$(echo $lidarrAlbumSearch  |
@@ -75,7 +73,7 @@ head -c -2)
 curl -X POST "$lidarrUrl/api/v1/album?apikey="$lidarrApiKey"" -H  "accept: text/plain" -H  "Content-Type: application/json" -d "$lidarrAlbumSearch" 
 }
 SearchRelease(){
-    ReleaseName=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/release-group/$1" | grep -o "<title>.*</title>" | sed 's/<title>//g' | head -c -9 | sed 's/\&amp;/\&/g')
+    ReleaseName=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/release-group/$1" | grep -o "<title>.*</title>" | sed 's/<title>//g' | head -c -9 | sed 's/\&amp;/\&/g' | sed 's/???/???‎/g')
     log "Adding :: $artist :: $ReleaseName"
     AddReleaseToLidarr $1 &> /dev/null
 }
@@ -103,8 +101,8 @@ do
 done
 }
 ArtistLookup() {
-search=$(echo $1 | sed 's/"//g')
-artist=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/artist/$search" | grep -o "<name>.*</name>" | sed 's/<name>//' | sed 's/<\/name>.*//')
+search=$(echo $1 | sed 's/\"//g')
+artist=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/artist/$search" | grep -o "<name>.*</name>" | sed 's/<name>//' | sed 's/<\/name>.*//' | sed 's/???/???‎/g' )
 log "Adding :: $artist"
 sleep 1.5
 SearchAllReleasesForArtist $search
