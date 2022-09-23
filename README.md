@@ -26,6 +26,10 @@ You can add more artist by copying the Musicbrainz Artist ID into the array like
   "artits": ["RandomMusicBrainzArtistString1", "RandomMusicBrainzArtistString2"] <br>
 } <br>
 
+IMPORTANT:<br>
+Files will be placed in the library /audiobooks. Please adjust your docker config according to that. Otherwise the script won't run.
+It is possible to have two seperate root folders (one for music e.g /music and one for those special releases /audiobooks.
+
 This Script was only tested with [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended), Lidarr may work but could have some missing dependencies.
 
 <!-- ACKNOWLEDGMENTS -->
