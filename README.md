@@ -32,9 +32,8 @@ It is possible to have two seperate root folders (one for music e.g /music and o
 
 This Script was only tested with [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended), Lidarr may work but could have some missing dependencies.
 
-Knowng Bugs: 
- - After running it the second time, lidarr will throw errors, that the release is already added. Fixing it soon.
- 
+Ps: This script is also implemented in [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended) and can be activated with the parameter lidarrAudiobookRootFolder=/customaudiobookpath
+
 <!-- ACKNOWLEDGMENTS -->
 ## ACKNOWLEDGMENTS
 * [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended)
