@@ -19,12 +19,14 @@
 
 
 ## Usage
-Copy the script into your config folder and run it with bash ./ERA.sh. Keep in mind that the artists.json needs to be in the same place.
+Copy the script into your config folder and run it with (in the container- docker exec -it containername bash) bash ./ERA.sh. Keep in mind that the artists.json needs to be in the same place.
 You can add more artist by copying the Musicbrainz Artist ID into the array like this:
 
 { <br>
   "artits": ["RandomMusicBrainzArtistString1", "RandomMusicBrainzArtistString2"] <br>
 } <br>
+
+This Script was only tested with [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended), Lidarr may work but could have some missing dependencies.
 
 <!-- ACKNOWLEDGMENTS -->
 ## ACKNOWLEDGMENTS
