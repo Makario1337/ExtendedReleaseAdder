@@ -74,16 +74,16 @@ AddReleaseToLidarr() {
 	    log "Adding :: $2 :: $3 :: Alreaddy Added, skipping...."
 	else
 	    lidarrAlbumSearch=$(echo $lidarrAlbumSearch  |
-	    sed  's/"monitored": false/"monitored": true/g'| 
-	    sed 's/"qualityProfileId": 0/"qualityProfileId": 1/g' | 
-	    sed 's/"metadataProfileId": 0/"metadataProfileId": 1/g' | 
-	    sed "s%\"metadataProfileId\": 1%\"metadataProfileId\": 1,\"rootFolderPath\": \"$lidarrAudiobookRootFolder/\" %g" | 
+	    sed  's/"monitored": false/"monitored": true/g'|
+	    sed 's/"qualityProfileId": 0/"qualityProfileId": 1/g' |
+	    sed 's/"metadataProfileId": 0/"metadataProfileId": 1/g' |
+	    sed "s%\"metadataProfileId\": 1%\"metadataProfileId\": 1,\"rootFolderPath\": \"$lidarrAudiobookRootFolder/\" %g" |
 	    sed 's/"metadataProfileId": 1/"metadataProfileId": 1,\"addOptions": {"monitor": "all","searchForMissingAlbums": false}/g' |
 	    sed 's/"grabbed": false/"grabbed": false,\"addOptions": {"searchForNewAlbum": false}/g'|
 	    jq '.' |
 	    cut -c 2- |
-	    head -c -2) 
-	    curl -X POST "$lidarrUrl/api/v1/album?apikey="$lidarrApiKey"" -H  "accept: text/plain" -H  "Content-Type: application/json" -d "$lidarrAlbumSearch" 
+	    head -c -2)
+	    curl -X POST "$lidarrUrl/api/v1/album?apikey="$lidarrApiKey"" -H  "accept: text/plain" -H  "Content-Type: application/json" -d "$lidarrAlbumSearch"
 	    log "Adding :: $2 :: $3 :: Release Added..."
 	fi
 }
@@ -98,10 +98,10 @@ SearchAllReleasesForArtist() {
     offset=0
     while [ $offset -le 500 ]
     do
-        offset=$(( $offset + 100 ))
         sleep 1.5
         SearchAllReleasesForArtist=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/release-group/?artist="$1"&limit=100&offset=$offset&fmt=json&type=other&secondary_type="audio%20drama"")
         lines=$(echo $SearchAllReleasesForArtist | jq '."release-groups"[]."id"')
+        offset=$(( $offset + 100 ))
         if [ -z "$lines" ]
         then
             log "ERROR :: Did not find matching release , skipping... "
@@ -111,7 +111,7 @@ SearchAllReleasesForArtist() {
             for line in $lines
             do
                 trim=$(echo $line | cut -c 2- | head -c -2)
-                SearchRelease $trim 
+                SearchRelease $trim
                 sleep 1.5
             done
         fi
@@ -132,7 +132,7 @@ then
     log "ERROR :: Exiting..."
 else
     for str in ${ArtistsJSON[@]}; do
-      ArtistLookup $str 
+      ArtistLookup $str
     done
 fi
 
