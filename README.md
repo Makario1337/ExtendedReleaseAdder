@@ -20,7 +20,9 @@
 
 ## Installation
 You need to add `/custom-services.d` and `/custom-cont-init.d` to your container.
+
 docker run example: 
+
 `-v /path/to/folderwithERA:/custom-services.d`
 `-v /path/to/folderwithERASetup:/custom-cont-init.d`
 
@@ -31,5 +33,5 @@ docker run example:
 ## ACKNOWLEDGMENTS
 * [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended)
 * [Lidarr](https://github.com/Lidarr/Lidarr)
-* [arr-scripts](https://github.com/RandomNinjaAtk/arr-scripts)https://github.com/RandomNinjaAtk/arr-scripts)
+* [arr-scripts](https://github.com/RandomNinjaAtk/arr-scripts)
 
