@@ -18,24 +18,18 @@
 </div>
 
 
-## Usage
-Copy the script into your config folder and run it with (in the container- docker exec -it containername bash) bash ./ERA.sh. Keep in mind that the artists.json needs to be in the same place.
-You can add more artist by copying the Musicbrainz Artist ID into the array like this:
+## Installation
+You need to add `/custom-services.d` and `/custom-cont-init.d` to your container.
+docker run example: 
+`-v /path/to/folderwithERA:/custom-services.d`
+`-v /path/to/folderwithERASetup:/custom-cont-init.d`
 
-{ <br>
-  "artits": ["RandomMusicBrainzArtistString1", "RandomMusicBrainzArtistString2"] <br>
-} <br>
+!Don't map the files to the same folder!
 
-IMPORTANT:<br>
-Files will be placed in the library /audiobooks. Please adjust your docker config according to that. Otherwise the script won't run.
-It is possible to have two seperate root folders (one for music e.g /music and one for those special releases /audiobooks.
-
-This Script was only tested with [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended), Lidarr may work but could have some missing dependencies.
-
-Ps: This script is also implemented in [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended) and can be activated with the parameter enabkeERAScript=true , nothing else is needed.
 
 <!-- ACKNOWLEDGMENTS -->
 ## ACKNOWLEDGMENTS
 * [Lidarr-Extended](https://github.com/RandomNinjaAtk/docker-lidarr-extended)
 * [Lidarr](https://github.com/Lidarr/Lidarr)
+* [arr-scripts](https://github.com/RandomNinjaAtk/arr-scripts)https://github.com/RandomNinjaAtk/arr-scripts)
 
