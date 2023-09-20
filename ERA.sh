@@ -2,6 +2,12 @@
 scriptVersion="1.1.3"
 agent="ERA ( https://github.com/Makario1337/ExtendedReleaseAdder )"
 
+### Import Settings
+source /config/extended.conf
+### Import Functions
+source /config/extended/functions
+
+
 ### DEBUG ###
 DEBUG=0
 ### DEBUG end ###
