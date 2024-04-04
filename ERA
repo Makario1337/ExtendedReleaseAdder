@@ -87,10 +87,12 @@ AddReleaseToLidarr() {
 SearchAllArtistsByTag(){
 offset=0
 tag="audio%20drama"
+tag="audiobook"
 log "Collecting artists by tag :: Collecting..."
 while [ $offset -le 5000 ]
 do  
     AllArtistsByTagWget=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/artist?query=tag:"audio%20drama"&limit=100&fmt=json&offset=$offset" | jq '.artists[].id')
+    AllArtistsByTagWget=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/artist?query=tag:"audiobook"&limit=100&fmt=json&offset=$offset" | jq '.artists[].id')
     AllArtistsByTag="$AllArtistsByTag $AllArtistsByTagWget"
     sleep 1.5
     offset=$(( $offset + 100 ))
@@ -121,6 +123,7 @@ for artist in ${ERAArtistsList[@]}; do
     do
         sleep 1.5
         SearchAllReleasesForArtistWget=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/release-group/?artist=$artist&limit=100&offset=$offset&fmt=json&type=other&secondary_type="audio%20drama"")
+        SearchAllReleasesForArtistWget=$(wget -U "$agent" --timeout=0 -q -O - "https://musicbrainz.org/ws/2/release-group/?artist=$artist&limit=100&offset=$offset&fmt=json&type=other&secondary_type="audiobook"")
         offset=$(( $offset + 100 ))
         SearchAllReleasesForArtist="$SearchAllReleasesForArtist $SearchAllReleasesForArtistWget"
     done
